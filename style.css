@@ -1,0 +1,243 @@
+:root {
+	--bg: #0f1411;
+	--surface: #182019;
+	--surface-soft: #202b22;
+	--text: #f3efe7;
+	--muted: #d3ccb9;
+	--gold: #bca06a;
+	--gold-strong: #d5b77f;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Yu Mincho", "Hiragino Mincho ProN", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+	color: var(--text);
+	/**/
+	background: linear-gradient(180deg, #0c110d 0%, #141b15 65%, #0f1411 100%);
+	line-height: 1.75;
+}
+
+.container {
+	width: min(1120px, calc(100% - 3rem));
+	margin: 0 auto;
+}
+
+.site-header {
+	position: relative;
+	overflow: hidden;
+	background-image: linear-gradient(rgba(12, 17, 13, 0.45), rgba(12, 17, 13, 0.65)), url("tea_back.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid rgba(188, 160, 106, 0.35);
+	backdrop-filter: blur(2px);
+	animation: header-fade-in 1s ease-out both;
+}
+
+.header-inner {
+	position: relative;
+	z-index: 1;
+	padding: 1rem 0;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1rem;
+}
+
+@keyframes header-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(-12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.brand-container {
+	display: flex;
+	align-items: center;
+	gap: 0.8rem;
+}
+
+.brand-logo {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+	display: block;
+}
+
+.brand-name {
+	margin: 0.25rem 0 0;
+	font-size: clamp(1.4rem, 2.4vw, 2rem);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+}
+
+.hero {
+	padding: clamp(4rem, 10vw, 8rem) 0;
+}
+
+.hero-inner {
+	max-width: 760px;
+}
+
+.catch {
+	margin: 0;
+	color: var(--gold-strong);
+	font-size: clamp(1.4rem, 3.6vw, 2.6rem);
+	letter-spacing: 0.08em;
+}
+
+.lead {
+	margin: 1.2rem 0 2rem;
+	color: var(--muted);
+	font-size: clamp(1rem, 1.8vw, 1.15rem);
+}
+
+.hero-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	align-items: center;
+}
+
+.section {
+	padding: 2rem 0 3.2rem;
+}
+
+.section h2 {
+	margin-top: 0;
+	margin-bottom: 0.8rem;
+	font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+	border-left: 3px solid var(--gold);
+	padding-left: 0.8rem;
+}
+
+.about p {
+	margin: 0;
+	color: var(--muted);
+}
+
+.info-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card {
+	margin: 0;
+	background: linear-gradient(160deg, rgba(32, 43, 34, 0.95), rgba(24, 32, 25, 0.9));
+	border: 1px solid rgba(188, 160, 106, 0.2);
+	border-radius: 12px;
+	padding: 1rem 1rem 0.9rem;
+}
+
+.card h3 {
+	margin-top: 0;
+	margin-bottom: 0.35rem;
+	color: var(--gold-strong);
+	font-size: 1.05rem;
+}
+
+.card p {
+	margin: 0;
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+.card-instagram {
+	background: radial-gradient(120% 120% at 100% 0%, rgba(213, 183, 127, 0.14) 0%, rgba(32, 43, 34, 0.95) 50%, rgba(24, 32, 25, 0.92) 100%);
+	border-color: rgba(213, 183, 127, 0.35);
+}
+
+.instagram-lead {
+	margin-bottom: 0.85rem;
+}
+
+.instagram-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45rem;
+	padding: 0.5rem 0.85rem;
+	border-radius: 999px;
+	border: 1px solid rgba(213, 183, 127, 0.55);
+	background: linear-gradient(180deg, rgba(44, 56, 46, 0.95), rgba(32, 41, 33, 0.95));
+	color: var(--text);
+	text-decoration: none;
+	font-size: 0.9rem;
+	letter-spacing: 0.03em;
+	transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.instagram-link::before {
+	content: "◎";
+	color: var(--gold-strong);
+	font-size: 0.85rem;
+	line-height: 1;
+}
+
+.instagram-link:hover {
+	transform: translateY(-1px);
+	border-color: rgba(213, 183, 127, 0.85);
+	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.instagram-link:focus-visible {
+	outline: 2px solid rgba(213, 183, 127, 0.85);
+	outline-offset: 2px;
+}
+
+.shop-button {
+	appearance: none;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(188, 160, 106, 0.55);
+	background: linear-gradient(180deg, #2a352c, #202921);
+	color: var(--text);
+	text-decoration: none;
+	padding: 0.7rem 1.1rem;
+	border-radius: 999px;
+	font-size: 0.95rem;
+	letter-spacing: 0.05em;
+	cursor: pointer;
+	transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-button:hover {
+	transform: translateY(-1px);
+	border-color: rgba(213, 183, 127, 0.8);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.shop-button.large {
+	padding: 0.85rem 1.5rem;
+	font-size: 1rem;
+}
+
+.site-footer {
+	border-top: 1px solid rgba(188, 160, 106, 0.26);
+}
+
+.footer-inner {
+	padding: 1.1rem 0 1.8rem;
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+	.info-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.header-inner {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}
