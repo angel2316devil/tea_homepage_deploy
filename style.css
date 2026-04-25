@@ -16,8 +16,16 @@ body {
 	margin: 0;
 	font-family: "Yu Mincho", "Hiragino Mincho ProN", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
 	color: var(--text);
-	/**/
-	background: linear-gradient(180deg, #0c110d 0%, #141b15 65%, #0f1411 100%);
+	background-color: #ffffff;
+	background-image:
+		radial-gradient(circle at 10% 14%, rgba(174, 219, 182, 0.45) 0 120px, transparent 121px),
+		radial-gradient(circle at 86% 12%, rgba(174, 219, 182, 0.36) 0 100px, transparent 101px),
+		radial-gradient(circle at 20% 70%, rgba(174, 219, 182, 0.4) 0 130px, transparent 131px),
+		radial-gradient(circle at 72% 62%, rgba(174, 219, 182, 0.34) 0 110px, transparent 111px),
+		radial-gradient(circle at 92% 88%, rgba(174, 219, 182, 0.3) 0 90px, transparent 91px);
+	background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+	background-position: 10% 14%, 86% 12%, 20% 70%, 72% 62%, 92% 88%;
+	background-size: auto, auto, auto, auto, auto;
 	line-height: 1.75;
 }
 
@@ -31,7 +39,7 @@ body {
 	overflow: hidden;
 	background-image: linear-gradient(rgba(12, 17, 13, 0.45), rgba(12, 17, 13, 0.65)), url("tea_back.png");
 	background-size: cover;
-	background-position: center;
+	background-position: 50% 28%;
 	background-repeat: no-repeat;
 	border-bottom: 1px solid rgba(188, 160, 106, 0.35);
 	backdrop-filter: blur(2px);
@@ -62,7 +70,7 @@ body {
 .brand-container {
 	display: flex;
 	align-items: center;
-	gap: 0.8rem;
+	gap: 1rem;
 }
 
 .brand-logo {
@@ -73,7 +81,7 @@ body {
 }
 
 .brand-name {
-	margin: 0.25rem 0 0;
+	margin: 0.5rem 0 0;
 	font-size: clamp(1.4rem, 2.4vw, 2rem);
 	font-weight: 600;
 	letter-spacing: 0.06em;
@@ -95,33 +103,88 @@ body {
 }
 
 .lead {
-	margin: 1.2rem 0 2rem;
-	color: var(--muted);
+	margin: 1.5rem 0 2rem;
+	color: #000;
 	font-size: clamp(1rem, 1.8vw, 1.15rem);
 }
 
 .hero-actions {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 0.75rem;
+	gap: 1rem;
 	align-items: center;
 }
 
 .section {
-	padding: 2rem 0 3.2rem;
+	padding: 2rem 0 3rem;
+}
+
+.gallery {
+	padding-top: 0.5rem;
+	padding-bottom: 2rem;
+}
+
+.gallery-scroller {
+	overflow-x: auto;
+	overflow-y: hidden;
+	border: 1px solid rgba(188, 160, 106, 0.25);
+	border-radius: 14px;
+	background: linear-gradient(180deg, rgba(32, 43, 34, 0.85), rgba(24, 32, 25, 0.85));
+	padding: 1rem;
+	scroll-behavior: auto;
+	-webkit-overflow-scrolling: touch;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+.gallery-scroller::-webkit-scrollbar {
+	display: none;
+}
+
+.gallery-scroller:focus-visible {
+	outline: 2px solid rgba(213, 183, 127, 0.9);
+	outline-offset: 4px;
+}
+
+.gallery-track {
+	display: flex;
+	gap: 1rem;
+	width: max-content;
+}
+
+.gallery-item {
+	flex: 0 0 auto;
+	width: clamp(220px, 28vw, 320px);
+	height: clamp(150px, 18vw, 210px);
+	overflow: hidden;
+	border-radius: 10px;
+	border: 1px solid rgba(188, 160, 106, 0.32);
+	background: rgba(18, 24, 19, 0.85);
+}
+
+.gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center center;
+	display: block;
+}
+
+.gallery-item img[src$="c.jpg"] {
+	object-position: center 72%;
 }
 
 .section h2 {
 	margin-top: 0;
-	margin-bottom: 0.8rem;
+	margin-bottom: 1rem;
 	font-size: clamp(1.2rem, 2.4vw, 1.7rem);
 	border-left: 3px solid var(--gold);
-	padding-left: 0.8rem;
+	padding-left: 1rem;
 }
 
 .about p {
 	margin: 0;
-	color: var(--muted);
+	color: #000;
 }
 
 .info-grid {
@@ -135,12 +198,12 @@ body {
 	background: linear-gradient(160deg, rgba(32, 43, 34, 0.95), rgba(24, 32, 25, 0.9));
 	border: 1px solid rgba(188, 160, 106, 0.2);
 	border-radius: 12px;
-	padding: 1rem 1rem 0.9rem;
+	padding: 1rem;
 }
 
 .card h3 {
 	margin-top: 0;
-	margin-bottom: 0.35rem;
+	margin-bottom: 0.5rem;
 	color: var(--gold-strong);
 	font-size: 1.05rem;
 }
@@ -157,14 +220,14 @@ body {
 }
 
 .instagram-lead {
-	margin-bottom: 0.85rem;
+	margin-bottom: 1rem;
 }
 
 .instagram-link {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.45rem;
-	padding: 0.5rem 0.85rem;
+	gap: 0.5rem;
+	padding: 0.5rem 1rem;
 	border-radius: 999px;
 	border: 1px solid rgba(213, 183, 127, 0.55);
 	background: linear-gradient(180deg, rgba(44, 56, 46, 0.95), rgba(32, 41, 33, 0.95));
@@ -190,7 +253,7 @@ body {
 
 .instagram-link:focus-visible {
 	outline: 2px solid rgba(213, 183, 127, 0.85);
-	outline-offset: 2px;
+	outline-offset: 4px;
 }
 
 .shop-button {
@@ -202,7 +265,7 @@ body {
 	background: linear-gradient(180deg, #2a352c, #202921);
 	color: var(--text);
 	text-decoration: none;
-	padding: 0.7rem 1.1rem;
+	padding: 1rem 1.5rem;
 	border-radius: 999px;
 	font-size: 0.95rem;
 	letter-spacing: 0.05em;
@@ -217,7 +280,7 @@ body {
 }
 
 .shop-button.large {
-	padding: 0.85rem 1.5rem;
+	padding: 1rem 2rem;
 	font-size: 1rem;
 }
 
@@ -226,7 +289,7 @@ body {
 }
 
 .footer-inner {
-	padding: 1.1rem 0 1.8rem;
+	padding: 1rem 0 2rem;
 	color: var(--muted);
 	font-size: 0.9rem;
 }

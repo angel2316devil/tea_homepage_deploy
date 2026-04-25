@@ -23,6 +23,84 @@ class ShopButtonController {
         });
     }
 }
+// 画像ギャラリーを無限ループで自動横スクロールするクラス
+class AutoScrollGalleryController {
+    constructor(scroller, pixelsPerSecond = 36) {
+        this.scroller = scroller;
+        this.pixelsPerSecond = pixelsPerSecond;
+        this.animationFrameId = null;
+        this.previousTimestamp = 0;
+        this.originalTrackWidth = 0;
+        this.isAnimationStarted = false;
+        this.boundResizeHandler = () => {
+            this.refreshTrackWidth();
+        };
+    }
+    bind() {
+        const track = this.scroller.querySelector(".gallery-track");
+        if (!(track instanceof HTMLElement)) {
+            return;
+        }
+        const originalChildren = Array.from(track.children);
+        if (originalChildren.length === 0) {
+            return;
+        }
+        originalChildren.forEach((child) => {
+            const clone = child.cloneNode(true);
+            track.appendChild(clone);
+        });
+        this.refreshTrackWidth();
+        window.addEventListener("resize", this.boundResizeHandler);
+        this.scroller.addEventListener("scroll", () => {
+            this.normalizeScrollPosition();
+        });
+        window.addEventListener("load", () => {
+            this.refreshTrackWidth();
+            this.startAnimation();
+        });
+        if (document.readyState === "complete") {
+            this.refreshTrackWidth();
+            this.startAnimation();
+        }
+    }
+    tick(timestamp) {
+        const deltaSeconds = (timestamp - this.previousTimestamp) / 1000;
+        this.previousTimestamp = timestamp;
+        this.scroller.scrollLeft += this.pixelsPerSecond * deltaSeconds;
+        this.normalizeScrollPosition();
+        this.animationFrameId = window.requestAnimationFrame((nextTimestamp) => {
+            this.tick(nextTimestamp);
+        });
+    }
+    normalizeScrollPosition() {
+        if (this.originalTrackWidth <= 0) {
+            return;
+        }
+        if (this.scroller.scrollLeft >= this.originalTrackWidth) {
+            this.scroller.scrollLeft -= this.originalTrackWidth;
+        }
+        if (this.scroller.scrollLeft < 0) {
+            this.scroller.scrollLeft += this.originalTrackWidth;
+        }
+    }
+    refreshTrackWidth() {
+        const track = this.scroller.querySelector(".gallery-track");
+        if (!(track instanceof HTMLElement)) {
+            return;
+        }
+        this.originalTrackWidth = track.scrollWidth / 2;
+    }
+    startAnimation() {
+        if (this.isAnimationStarted) {
+            return;
+        }
+        this.isAnimationStarted = true;
+        this.animationFrameId = window.requestAnimationFrame((timestamp) => {
+            this.previousTimestamp = timestamp;
+            this.tick(timestamp);
+        });
+    }
+}
 // ページ初期化処理をまとめるアプリケーションクラス
 class HomepageApplication {
     // 初期表示時に必要なDOM取得と機能初期化を行う関数
@@ -35,6 +113,11 @@ class HomepageApplication {
         // shopButtons: ネットショッピング導線ボタン群
         const shopButtons = document.querySelectorAll('[data-action="open-shop"]');
         new ShopButtonController(shopButtons).bind();
+        // galleryScroller: 画像横スクロールギャラリー要素
+        const galleryScroller = document.querySelector('[data-auto-scroll="gallery"]');
+        if (galleryScroller instanceof HTMLElement) {
+            new AutoScrollGalleryController(galleryScroller).bind();
+        }
     }
 }
 // アプリケーション起動
