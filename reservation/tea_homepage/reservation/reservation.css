@@ -1,0 +1,49 @@
+:root {
+	--text: #f3efe7;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	font-family: "Yu Mincho", "Hiragino Mincho ProN", "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+	color: var(--text);
+	background-color: #ffffff;
+	background-image:
+		radial-gradient(circle at 10% 14%, rgba(174, 219, 182, 0.45) 0 120px, transparent 121px),
+		radial-gradient(circle at 86% 12%, rgba(174, 219, 182, 0.36) 0 100px, transparent 101px),
+		radial-gradient(circle at 20% 70%, rgba(174, 219, 182, 0.4) 0 130px, transparent 131px),
+		radial-gradient(circle at 72% 62%, rgba(174, 219, 182, 0.34) 0 110px, transparent 111px),
+		radial-gradient(circle at 92% 88%, rgba(174, 219, 182, 0.3) 0 90px, transparent 91px);
+	background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+	background-position: 10% 14%, 86% 12%, 20% 70%, 72% 62%, 92% 88%;
+	background-size: auto, auto, auto, auto, auto;
+	line-height: 1.75;
+}
+
+.reservation-status {
+	min-height: 100vh;
+	display: grid;
+	place-items: center;
+	padding: 24px;
+}
+
+.reservation-status p {
+	margin: 0;
+	color: #1f2d22;
+	font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+	font-weight: 600;
+	text-align: center;
+	background: rgba(255, 255, 255, 0.72);
+	padding: 16px 24px;
+	border-radius: 12px;
+	border: 1px solid rgba(46, 93, 58, 0.25);
+}
